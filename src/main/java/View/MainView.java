@@ -1,4 +1,4 @@
-package view;
+package View;
 
 public class MainView extends javax.swing.JFrame {
    

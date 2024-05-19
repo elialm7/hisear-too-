@@ -1,7 +1,7 @@
-package app;
+package App;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import org.apache.log4j.Logger;
-import view.MainView;
+import View.MainView;
 import javax.swing.*;
 
 

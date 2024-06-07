@@ -1,5 +1,6 @@
 package Persistance.JDBC;
 
+import Core.Connection.SqlConnection;
 import Core.Repository.IHistorieSearchDAO;
 import Entities.HistorieSearch;
 
@@ -8,6 +9,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class HistorieSearchDaoImp implements IHistorieSearchDAO<HistorieSearch> {
+
+    public HistorieSearchDaoImp(SqlConnection connection) {
+    }
 
     @Override
     public List<HistorieSearch> getHistorieSearchsByTitle(String title) {

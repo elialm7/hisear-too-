@@ -1,10 +1,12 @@
 package View;
 
+import UIState.MainViewModel;
+
 public class MainView extends javax.swing.JFrame {
    
     
     
-    public MainView() {
+    public MainView(MainViewModel model) {
         initComponents();
     }
 

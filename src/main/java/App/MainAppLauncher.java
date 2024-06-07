@@ -3,7 +3,7 @@ import Controller.MainViewController;
 import Core.Connection.SqlConnection;
 import Core.Specification.DatabaseSpecification;
 import Core.System.LocalDatabaseInitialization;
-import Errors.ErrorCode;
+import Core.Errors.ErrorCode;
 import Persistance.JDBC.HistorieSearchDaoImp;
 import Service.UseCaseService;
 import UIState.MainViewModel;

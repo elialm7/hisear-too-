@@ -1,5 +1,7 @@
 package UIState;
 
+import Entities.ObservableProperty;
+
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package Errors;
+package Core.Errors;
 
 public class ErrorCode {
 

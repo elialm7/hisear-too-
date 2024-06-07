@@ -1,4 +1,4 @@
-package Core.Repository;
+package Core.dao;
 
 import java.util.Date;
 import java.util.List;

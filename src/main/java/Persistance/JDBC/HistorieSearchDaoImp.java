@@ -1,12 +1,11 @@
 package Persistance.JDBC;
 
 import Core.Connection.SqlConnection;
-import Core.Repository.IHistorieSearchDAO;
+import Core.dao.IHistorieSearchDAO;
 import Entities.HistorieSearch;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 public class HistorieSearchDaoImp implements IHistorieSearchDAO<HistorieSearch> {
 

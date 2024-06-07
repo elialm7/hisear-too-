@@ -1,40 +1,33 @@
 package Core.System;
-
 import Core.Connection.SqlConnection;
 import Core.Specification.DatabaseSpecification;
-
-import java.util.ArrayList;
-import java.util.List;
+import Entities.ObservableProperty;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 public  class LocalDatabaseInitialization {
+    private DatabaseSpecification spec;
 
+    private ObservableProperty<InitializationStateMessage> observableState;
 
-    protected DatabaseSpecification spec;
-    private List<Consumer<InitializationState>> systemObservers = new ArrayList<>();
+    public record InitializationStateMessage(String message, String state){}
 
-    record InitializationState(String message, String state){}
-
-    public void addObserver(Consumer<InitializationState> observer){
-        synchronized (this){
-            if(systemObservers.contains(observer)){
-                return;
-            }
-            systemObservers.add(observer);
-        }
+    public LocalDatabaseInitialization(){
+        this.observableState = new ObservableProperty<>(
+                new InitializationStateMessage("", "")
+        );
     }
-    private void notifyObservers(InitializationState newState){
-        synchronized (this){
-            if(systemObservers.isEmpty()) {
-                return;
-            }
-            systemObservers.forEach(consumer -> consumer.accept(newState));
 
-        }
+    public ObservableProperty<InitializationStateMessage> getObservableState(){
+        return this.observableState;
     }
 
     public Optional<SqlConnection> initialize(DatabaseSpecification spec){
+
+
+        this.observableState.set(new InitializationStateMessage(
+                "",
+                ""
+        ));
 
         /*
             todo: steps for the initialization

@@ -27,7 +27,7 @@ public class SqLiteConnection implements SqlConnection {
            return Optional.of(conn);
         }catch (SQLException ex) {
             log.error("Error creating the connection: ", ex);
-            return Optional.ofNullable(conn);
+            return Optional.empty();
         }
     }
 }

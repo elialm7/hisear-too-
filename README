@@ -1,0 +1,9 @@
+# HiSear tool
+
+This software is a tool where you can save your links of websites you have visited,
+and want to read, or read, etc so you don't save in a plain text file.
+
+# why?
+why not!? My whole point with this project was to have fun and also try to use technologies such as
+sqlite, git branches, jira for software management, junit for testing, and jenkin for ci/cd.
+

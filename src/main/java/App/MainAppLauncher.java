@@ -1,9 +1,9 @@
 package App;
 import Controller.MainViewController;
-import Core.Connection.SqlConnection;
-import Core.Specification.DatabaseSpecification;
-import Core.System.LocalDatabaseInitialization;
-import Core.Errors.ErrorCode;
+import Connection.SqlConnection;
+import Specification.DatabaseSpecification;
+import Persistance.Initialization.LocalSqliteDatabaseInitialization;
+import Errors.ErrorCode;
 import Persistance.JDBC.HistorieSearchDaoImp;
 import Service.UseCaseService;
 import UIState.MainViewModel;
@@ -28,7 +28,7 @@ public class MainAppLauncher {
     }
     private static SqlConnection tryDatabaseInitialization(){
         log.debug("Initializing database");
-        LocalDatabaseInitialization systemInitialization = new LocalDatabaseInitialization();
+        LocalSqliteDatabaseInitialization systemInitialization = new LocalSqliteDatabaseInitialization();
         var dbspec = createDatabaseSpecification();
         Optional<SqlConnection> result = systemInitialization.initialize(dbspec);
         if(result.isEmpty()){

@@ -1,6 +1,7 @@
 package Persistance.JDBC;
 
-import Core.Connection.SqlConnection;
+import Connection.SqlConnection;
+import Specification.DatabaseSpecification;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -11,19 +12,19 @@ import java.util.Optional;
 public class SqLiteConnection implements SqlConnection {
 
     private static final Logger log = Logger.getLogger(SqLiteConnection.class);
-    private String url;
+    private DatabaseSpecification spec;
 
 
 
-    public SqLiteConnection(String url) {
-        this.url = url;
+    public SqLiteConnection(DatabaseSpecification spec) {
+        this.spec = spec;
     }
 
     @Override
     public Optional<Connection> connect(){
         Connection conn = null;
         try {
-           conn = DriverManager.getConnection(url);
+           conn = DriverManager.getConnection(spec.url());
            return Optional.of(conn);
         }catch (SQLException ex) {
             log.error("Error creating the connection: ", ex);

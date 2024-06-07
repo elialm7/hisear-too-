@@ -1,7 +1,7 @@
 package Persistance.JDBC;
 
-import Core.Connection.SqlConnection;
-import Core.dao.IHistorieSearchDAO;
+import Connection.SqlConnection;
+import dao.IHistorieSearchDAO;
 import Entities.HistorieSearch;
 
 import java.util.Date;

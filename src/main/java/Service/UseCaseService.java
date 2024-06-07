@@ -1,6 +1,6 @@
 package Service;
 
-import Core.dao.IHistorieSearchDAO;
+import dao.IHistorieSearchDAO;
 import Entities.HistorieSearch;
 
 public class UseCaseService {

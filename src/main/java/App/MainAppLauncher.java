@@ -5,12 +5,12 @@ import Core.Specification.DatabaseSpecification;
 import Core.System.LocalDatabaseInitialization;
 import Errors.ErrorCode;
 import Persistance.JDBC.HistorieSearchDaoImp;
-import Persistance.SqlLiteInitialization.SqLiteInitialization;
 import Service.UseCaseService;
 import UIState.MainViewModel;
 import org.apache.log4j.Logger;
 import View.MainView;
-import javax.swing.*;
+
+import java.util.Optional;
 
 
 public class MainAppLauncher {
@@ -19,7 +19,7 @@ public class MainAppLauncher {
     public static void main(String...args){
        init();
     }
-    private static DatabaseSpecification getDatabaseSpecification(){
+    private static DatabaseSpecification createDatabaseSpecification(){
         //todo: improve later
         var spec = new DatabaseSpecification();
         spec.setBaseurl("jdbc:sqlite:");
@@ -27,19 +27,15 @@ public class MainAppLauncher {
         return spec;
     }
     private static SqlConnection tryDatabaseInitialization(){
-        try {
-            log.debug("Attempting local database initialization");
-            LocalDatabaseInitialization systemInitialization = new SqLiteInitialization();
-            var dbspec = getDatabaseSpecification();
-            return systemInitialization.initialize(dbspec);
-        }catch (Exception ex){
-            log.error("Local database failed.", ex);
-            JOptionPane.showMessageDialog(null,
-                    "Local Database loading failed.",
-                    "Error at startup", JOptionPane.ERROR_MESSAGE);
+        log.debug("Initializing database");
+        LocalDatabaseInitialization systemInitialization = new LocalDatabaseInitialization();
+        var dbspec = createDatabaseSpecification();
+        Optional<SqlConnection> result = systemInitialization.initialize(dbspec);
+        if(result.isEmpty()){
+            log.error("Local database loading failed.");
             System.exit(ErrorCode.FAILED_DATABASE_INITIALIZATION);
-            return null; //unreachable
         }
+        return result.get();
     }
     private static void init(){
         log.debug("Initializing system.");
